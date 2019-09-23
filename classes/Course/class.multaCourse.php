@@ -63,10 +63,8 @@ class multaCourse {
 				break;
 			default:
 				$query = "SELECT c.title, ref.ref_id FROM object_data c
-                    INNER JOIN object_reference ref ON ref.obj_id = c.obj_id AND isNULL(ref.deleted)
-                    INNER JOIN object_data r ON r.type = 'role' AND (r.title = CONCAT('il_crs_admin_',ref.ref_id))
-                    INNER JOIN rbac_ua ua ON ua.usr_id = " . $ilUser->getId() . " AND ua.rol_id = r.obj_id
-                    WHERE c.type = 'crs'";
+                          INNER JOIN object_reference ref ON ref.obj_id = c.obj_id AND isNULL(ref.deleted)
+                          WHERE c.type = 'crs'";
 
 
 				if (count($filters)) {
@@ -80,6 +78,8 @@ class multaCourse {
 				if ($sorting_field) {
 					$query .= ' ORDER BY ' . $sorting_field . ' ' . ($order ? $order : 'ASC');
 				}
+
+				error_log($query);
 
 				$set = $ilDB->query($query);
 				while ($rec = $ilDB->fetchAssoc($set)) {
