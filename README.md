@@ -20,22 +20,25 @@ An additional Button on the Personal Desktop of users having a given role leads 
 ![003][assign]
 Have a look at the [full documentation](/doc/Documentation.pdf?raw=true)
 
-### Adjustment suggestions
-* Adjustment suggestions by pull requests
-* Adjustment suggestions which are not yet worked out in detail by Jira tasks under https://jira.studer-raimann.ch
-* Bug reports under https://jira.studer-raimann.ch
-* For external users you can report it at support@studer-raimann.ch
-
-### ILIAS Plugin SLA
-Wir lieben und leben die Philosophie von Open Source Software! Die meisten unserer Entwicklungen, welche wir im Kundenauftrag oder in Eigenleistung entwickeln, stellen wir öffentlich allen Interessierten kostenlos unter https://github.com/studer-raimann zur Verfügung.
-
-Setzen Sie eines unserer Plugins professionell ein? Sichern Sie sich mittels SLA die termingerechte Verfügbarkeit dieses Plugins auch für die kommenden ILIAS Versionen. Informieren Sie sich hierzu unter https://studer-raimann.ch/produkte/ilias-plugins/plugin-sla.
-
-Bitte beachten Sie, dass wir nur Institutionen, welche ein SLA abschliessen Unterstützung und Release-Pflege garantieren.
-
-
 
 [pd]: /doc/Screenshots/001.png?raw=true "personal desktop"
 [user_select]: /doc/Screenshots/002.png?raw=true "Select Users"
 [assign]: /doc/Screenshots/003.png?raw=true "Assign User to multiple Courses"
 [conf]: /doc/Screenshots/004.png?raw=true "Plugin-Configuration"
+
+## Rebuild & Maintenance
+
+fluxlabs ag, support@fluxlabs.ch
+
+This project needs to be rebuilt before it can be maintained.
+
+Are you interested in a rebuild and would you like to participate?
+Take advantage of the crowdfunding opportunity under [discussions](https://github.com/fluxapps/MultiAssign/discussions/5).
+
+
+## About fluxlabs plugins
+
+Please also have a look at our other key projects and their [MAINTENANCE](https://github.com/fluxapps/docs/blob/8ce4309b0ac64c039d29204c2d5b06723084c64b/assets/MAINTENANCE.png).
+
+The plugins that require a rebuild and the costs are listed here: [REBUILDS](https://github.com/fluxapps/docs/blob/8ce4309b0ac64c039d29204c2d5b06723084c64b/assets/REBUILDS.png)
+
