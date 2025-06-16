@@ -50,10 +50,14 @@ class multaCourseGUI {
 	 * @var ilPropertyFormGUI
 	 */
 	protected $usr_pres;
+	/**
+	 * @var \ILIAS\UI\Factory
+	 */
+	protected $ui;
 
 
 	public function __construct() {
-		global $ilCtrl, $tpl, $lng, $ilTabs;
+		global $ilCtrl, $tpl, $lng, $ilTabs, $DIC;
 		/**
 		 * @var ilCtrl     $ilCtrl
 		 * @var ilTemplate $tpl
@@ -66,6 +70,7 @@ class multaCourseGUI {
 		$this->tabs = $ilTabs;
 		$this->pl = ilMultiAssignPlugin::getInstance();
 		$this->usr_id = ilSession::get(multaUserGUI::SESSION_ID);
+		$this->ui = $DIC->ui();
 	}
 
 
@@ -135,7 +140,7 @@ class multaCourseGUI {
 	protected function doAssignments() {
 		$id = filter_input(INPUT_POST, "id", FILTER_DEFAULT, FILTER_FORCE_ARRAY);
 		if (empty($id)) {
-			ilUtil::sendFailure($this->pl->txt('msg_failure_no_course_selected'), true);
+			$this->ui->mainTemplate()->setOnScreenMessage('failure', $this->pl->txt('msg_failure_no_course_selected'), true);
 			$this->index();
 
 			return;
@@ -147,7 +152,7 @@ class multaCourseGUI {
 			$sum->sendMail(new ilObjUser($this->usr_id));
 		}
 
-		ilUtil::sendSuccess($this->pl->txt('msg_success_user_assigned'), true);
+		$this->ui->mainTemplate()->setOnScreenMessage('success', $this->pl->txt('msg_success_user_assigned'), true);
 		$this->cancel();
 	}
 
@@ -157,7 +162,7 @@ class multaCourseGUI {
 			$this->multaUser = multaUser::find($this->usr_id);
 		}
 		if (!$this->multaUser instanceof multaUser) {
-			ilUtil::sendFailure($this->pl->txt('msg_failure_no_user_selected'), true);
+			$this->ui->mainTemplate()->setOnScreenMessage('failure', $this->pl->txt('msg_failure_no_user_selected'), true);
 			$this->cancel();
 		}
 	}

@@ -2,7 +2,7 @@
 require_once('./Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/MultiAssign/classes/User/class.multaUserGUI.php');
 require_once('./Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/MultiAssign/classes/Course/class.multaCourseGUI.php');
 require_once('class.ilMultiAssignPlugin.php');
-use srag\DIC\MultiAssign\DICTrait;
+
 /**
  * Class multaMainGUI
  *
@@ -14,9 +14,14 @@ use srag\DIC\MultiAssign\DICTrait;
  * @ilCtrl_IsCalledBy multaMainGUI : ilRouterGUI, ilUIPluginRouterGUI
  */
 class multaMainGUI {
-	use DICTrait;
+
+	/**
+	 * @var \ILIAS\UI\Factory
+	 */
+	protected $ui;
+
 	public function __construct() {
-		global $ilCtrl, $tpl, $lng, $ilTabs;
+		global $ilCtrl, $tpl, $lng, $ilTabs, $DIC;
 		/**
 		 * @var ilCtrl     $ilCtrl
 		 * @var ilTemplate $tpl
@@ -28,6 +33,7 @@ class multaMainGUI {
 		$this->lng = $lng;
 		$this->tabs = $ilTabs;
 		$this->pl = ilMultiAssignPlugin::getInstance();
+		$this->ui = $DIC->ui();
 		//		$this->pl->updateLanguageFiles();
 	}
 
@@ -41,11 +47,11 @@ class multaMainGUI {
 
 	public function executeCommand() {
 		if (!multaAccess::hasAccess()) {
-			ilUtil::sendFailure($this->pl->txt('access_denied'), true);
+			$this->ui->mainTemplate()->setOnScreenMessage('failure', $this->pl->txt('access_denied'), true);
 			if (self::version()->is6()) {
                 $this->ilCtrl->redirectByClass(ilDashboardGUI::class);
             } else {
-			$this->ilCtrl->redirectByClass(ilPersonalDesktopGUI::class);
+			    $this->ilCtrl->redirectByClass(ilPersonalDesktopGUI::class);
 			}
 		}
 		$this->initHeader();
@@ -65,8 +71,23 @@ class multaMainGUI {
 		    $this->tpl->loadStandardTemplate();
 		    $this->tpl->printToStdout();
         } else {
-		$this->tpl->getStandardTemplate();
-		$this->tpl->show();
+		// For ILIAS 8.x no need to load standard template
+		//$this->tpl->getStandardTemplate();
+		$this->tpl->printToStdout();
 		}
+	}
+
+	/**
+	 * Returns a version helper object with is6() method.
+	 * This is a minimal stub for compatibility.
+	 */
+	public static function version()
+	{
+		return new class {
+			public function is6() {
+				// Adjust this logic as needed for your environment
+				return false;
+			}
+		};
 	}
 }

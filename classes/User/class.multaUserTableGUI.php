@@ -62,7 +62,7 @@ class multaUserTableGUI extends ilTable2GUI {
 	/**
 	 * @param array $a_set
 	 */
-	public function fillRow($a_set) {
+	public function fillRow(array $a_set): void {
 		/**
 		 * @var multaUser $multaUser
 		 */
@@ -100,7 +100,9 @@ class multaUserTableGUI extends ilTable2GUI {
 			if ($value) {
 				$value = str_replace('%', '', $value);
 				if (strlen($value) < 3) {
-					ilUtil::sendFailure($this->pl->txt('msg_failure_more_characters_needed'));
+					global $DIC;
+					$ui = $DIC->ui();
+					$ui->mainTemplate()->setOnScreenMessage('failure', $this->pl->txt('msg_failure_more_characters_needed'), false);
 					continue;
 				}
 				$fitered = true;
@@ -126,7 +128,7 @@ class multaUserTableGUI extends ilTable2GUI {
 	/**
 	 * @return array
 	 */
-	public function getSelectableColumns() {
+	public function getSelectableColumns(): array {
 		$cols['firstname'] = array( 'txt' => $this->pl->txt('usr_firstname'), 'default' => true, 'width' => 'auto', 'sort_field' => 'firstname' );
 		$cols['lastname'] = array( 'txt' => $this->pl->txt('usr_lastname'), 'default' => true, 'width' => 'auto', 'sort_field' => 'lastname' );
 		$cols['email'] = array( 'txt' => $this->pl->txt('usr_email'), 'default' => true, 'width' => 'auto', 'sort_field' => 'email' );
@@ -140,7 +142,7 @@ class multaUserTableGUI extends ilTable2GUI {
 	private function addColumns() {
 		foreach ($this->getSelectableColumns() as $k => $v) {
 			if ($this->isColumnSelected($k)) {
-				if ($v['sort_field']) {
+				if (isset($v['sort_field']) && $v['sort_field']) {
 					$sort = $v['sort_field'];
 				} else {
 					$sort = $k;
@@ -177,7 +179,7 @@ class multaUserTableGUI extends ilTable2GUI {
 	}
 
 
-	public function resetOffset($a_in_determination = false) {
+	public function resetOffset(bool $a_in_determination = false): void {
 		parent::resetOffset($a_in_determination);
 		$this->ctrl->setParameter($this->parent_obj, $this->getNavParameter(), $this->nav_value);
 	}

@@ -67,7 +67,7 @@ class multaCourseTableGUI extends ilTable2GUI {
 	/**
 	 * @param array $a_set
 	 */
-	public function fillRow($a_set) {
+	public function fillRow(array $a_set): void {
 		foreach ($this->getSelectableColumns() as $k => $v) {
 			if ($k == 'selection') {
 				$this->tpl->setCurrentBlock('checkbox_front');
@@ -114,7 +114,7 @@ class multaCourseTableGUI extends ilTable2GUI {
 	/**
 	 * @return array
 	 */
-	public function getSelectableColumns() {
+	public function getSelectableColumns(): array {
 		$cols['selection'] = array( 'txt' => $this->pl->txt('crs_selection'), 'default' => true, 'width' => '60px', 'sort_field' => NULL );
 		$cols['role'] = array( 'txt' => $this->pl->txt('crs_role'), 'default' => true, 'width' => '100px', 'sort_field' => NULL );
 		$cols['title'] = array( 'txt' => $this->pl->txt('crs_title'), 'default' => true, 'width' => '30%', 'sort_field' => 'title' );
@@ -215,7 +215,7 @@ class multaCourseTableGUI extends ilTable2GUI {
 	}
 
 
-	public function resetOffset($a_in_determination = false) {
+	public function resetOffset(bool $a_in_determination = false): void {
 		parent::resetOffset($a_in_determination);
 		$this->ctrl->setParameter($this->parent_obj, $this->getNavParameter(), $this->nav_value);
 	}

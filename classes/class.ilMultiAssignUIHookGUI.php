@@ -12,6 +12,8 @@ require_once('./Customizing/global/plugins/Services/UIComponent/UserInterfaceHoo
  * @author  Fabian Schmid <fs@studer-raimann.ch>
  * @version $Id$
  * @ingroup ServicesUIComponent
+ * 
+ * @ilCtrl_IsCalledBy ilMultiAssignUIHookGUI: ilRouterGUI, ilUIPluginRouterGUI, ilPCPluggedGUI, ilRepositoryGUI, ilTabsGUI, PageContentGUI
  */
 class ilMultiAssignUIHookGUI extends ilUIHookPluginGUI {
 
@@ -25,11 +27,14 @@ class ilMultiAssignUIHookGUI extends ilUIHookPluginGUI {
 	 * @internal param $
 	 * @return array
 	 */
-	public function getHTML($a_comp, $a_part, $a_par = array()) {
+	public function getHTML(string $a_comp, string $a_part, array $a_par = []): array {
 		if (multaConfig::getValueById(multaConfig::F_SHOW_PD_BUTTON) && multaAccess::hasAccess()) {
 			if (($a_comp == 'Services/PersonalDesktop' || $a_comp == 'Services/Dashboard') AND $a_part == 'right_column') {
 				global $ilCtrl;
-				if ($ilCtrl->checkTargetClass(array( 'ilUIPluginRouterGUI', 'multaMainGUI' ))) {
+				$cmd_class = $ilCtrl->getCmdClass();
+
+				// Likely need to be ildashboardgui included
+				if (in_array($cmd_class, ['ilUIPluginRouterGUI', 'multaMainGUI', 'ildashboardgui'])) {
 					return array(
 						'mode' => ilUIHookPluginGUI::PREPEND,
 						'html' => $this->getBlockHTML()

@@ -19,7 +19,7 @@ class multaPDBlock extends ilBlockGUI {
 	/**
 	 * @var bool
 	 */
-	protected $allow_moving = false;
+	protected bool $allow_moving = false;
 
 
 	/**
@@ -49,7 +49,7 @@ class multaPDBlock extends ilBlockGUI {
 	}
 
 
-	public function fillDataSection() {
+	public function fillDataSection(): void {
 		global $ilCtrl;
 		/**
 		 * @var ilCtrl $ilCtrl

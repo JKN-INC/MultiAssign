@@ -9,7 +9,6 @@ use ILIAS\GlobalScreen\Scope\MainMenu\Provider\AbstractStaticPluginMainMenuProvi
 use ilUIPluginRouterGUI;
 use multaAccess;
 use multaMainGUI;
-use srag\DIC\MultiAssign\DICTrait;
 
 /**
  * Class Menu
@@ -21,7 +20,6 @@ use srag\DIC\MultiAssign\DICTrait;
 class Menu extends AbstractStaticPluginMainMenuProvider
 {
 
-    use DICTrait;
 
     const PLUGIN_CLASS_NAME = ilMultiAssignPlugin::class;
 
