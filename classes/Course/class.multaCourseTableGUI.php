@@ -130,8 +130,10 @@ class multaCourseTableGUI extends ilTable2GUI {
 				if ($v['sort_field']) {
 					$sort = $v['sort_field'];
 				} else {
-					$sort = NULL;
+					$sort = '';
 				}
+				$GLOBALS['ilLog']->write(__METHOD__ .
+					': Adding column ' . $v['txt']);
 				$this->addColumn($v['txt'], $sort, $v['width']);
 			}
 		}

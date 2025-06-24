@@ -549,7 +549,7 @@ class multaUser extends ActiveRecord
 	 * @con_fieldtype  integer
 	 * @con_length     1
 	 */
-	protected ?int $is_self_registered;
+	protected int $is_self_registered = 0;
 
 	// --- Getters and Setters ---
 
