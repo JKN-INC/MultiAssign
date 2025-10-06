@@ -23,6 +23,10 @@ class ilMultiAssignPlugin extends ilUserInterfaceHookPlugin {
 	 */
 	protected static $instance;
 
+	protected $rbacreview;
+
+	protected $DIC;
+
 
 	/**
 	 * @return ilMultiAssignPlugin
@@ -56,20 +60,12 @@ public function __construct()
 
 	}
 
-
 	/**
 	 * @return string
 	 */
 	public function getPluginName():string {
 		return self::PLUGIN_NAME;
 	}
-
-
-	//	public function txt($a_var) {
-	//		require_once('./Customizing/global/plugins/Libraries/PluginTranslator/class.sragPluginTranslator.php');
-	//
-	//		return sragPluginTranslator::getInstance($this)->active()->write()->txt($a_var);
-	//	}
 
 	/**
 	 * @return bool
