@@ -48,6 +48,7 @@ class ilMultiAssignPlugin extends ilUserInterfaceHookPlugin {
 
 public function __construct()
 	{
+	
 		global $DIC;
 
 		$this->DIC = $DIC;
@@ -77,10 +78,4 @@ public function __construct()
 		return true;
 	}
 
-    /**
-     * @inheritDoc
-     */
-    public function promoteGlobalScreenProvider() : AbstractStaticPluginMainMenuProvider {
-        return new Menu(self::dic()->dic(), $this);
-    }
 }

@@ -112,6 +112,7 @@ class multaConfigFormGUI extends ilPropertyFormGUI {
 		if (!$this->checkInput()) {
 			return false;
 		}
+
 		foreach ($this->getItems() as $item) {
 			$this->saveValueForItem($item);
 		}
@@ -124,7 +125,9 @@ class multaConfigFormGUI extends ilPropertyFormGUI {
 	 * @param ilFormPropertyGUI $item
 	 */
 	private function saveValueForItem(ilFormPropertyGUI $item) {
+		
 		if (self::checkItem($item)) {
+
 			$key = $item->getPostVar();
 			multaConfig::set($key, $this->getInput($key));
 
