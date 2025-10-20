@@ -164,10 +164,10 @@ class multaSummaryMail {
 		$this->renderEmailText();
 
 		$ilMail = new ilMail($ilUser->getId());
-        if (self::version()->is6()) {
-            $ilMail->sendMail($ilObjUser->getLogin(), '', '', $this->subject, $this->getMailText(), [], false);
-        } else {
-		$ilMail->sendMail($ilObjUser->getLogin(), '', '', $this->subject, $this->getMailText(), NULL, array( 'normal' ));
+		if (self::version()->is6()) {
+			$ilMail->sendMail($ilObjUser->getLogin(), '', '', $this->subject, $this->getMailText(), [], false);
+		} else {
+			$ilMail->sendMail($ilObjUser->getLogin(), '', '', $this->subject, $this->getMailText(), [], false);
 		}
 	}
 
