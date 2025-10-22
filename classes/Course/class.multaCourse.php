@@ -97,16 +97,16 @@ class multaCourse {
 	 */
 	public static function getAllPeriods() {
 
-		$select = array();
-		//UniBas
-		if(file_exists('./Customizing/global/origins/hubCourse/unibasSLCM/class.ubPeriods.php')) {
-			require_once './Customizing/global/origins/hubCourse/unibasSLCM/class.ubPeriods.php';
-			$select = array( NULL => ilMultiAssignPlugin::getInstance()->txt('crs_period_null') );
-			foreach (ubPeriodList::getInstance()->getPeriods() as $period) {
-				$select[$period->getId()] = $period->getYear() . " " . $period->getSemesterString();
-			}
-		}
+        $select = array();
+        //UniBas
+        if(file_exists('./Customizing/global/origins/hubCourse/unibasSLCM/class.ubPeriods.php')) {
+            require_once './Customizing/global/origins/hubCourse/unibasSLCM/class.ubPeriods.php';
+            $select = array( '' => ilMultiAssignPlugin::getInstance()->txt('crs_period_null') );
+            foreach (ubPeriodList::getInstance()->getPeriods() as $period) {
+                $select[$period->getId()] = $period->getYear() . " " . $period->getSemesterString();
+            }
+        }
 
-		return $select;
-	}
+        return $select;
+    }
 }

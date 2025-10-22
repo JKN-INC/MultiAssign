@@ -20,8 +20,14 @@ class multaUserGUI {
 	const SESSION_ID = 'multi_assign_user_id';
 
 
+	/**
+	 * @var \ILIAS\UI\Factory
+	 */
+	protected $ui;
+
+
 	public function __construct() {
-		global $ilCtrl, $tpl, $lng, $ilTabs;
+		global $ilCtrl, $tpl, $lng, $ilTabs, $DIC;
 		/**
 		 * @var ilCtrl     $ilCtrl
 		 * @var ilTemplate $tpl
@@ -34,6 +40,7 @@ class multaUserGUI {
 		$this->tabs = $ilTabs;
 		$this->pl = ilMultiAssignPlugin::getInstance();
 		ilSession::set(self::SESSION_ID, NULL);
+		$this->ui = $DIC->ui();
 	}
 
 
@@ -77,9 +84,13 @@ class multaUserGUI {
 
 	protected function selectUser() {
 		global $ilUser;
-		$usr_id = $_POST['id'];
+		$usr_id = isset($_POST['id']) ? $_POST['id'] : null;
+		if (!$usr_id) {
+			$this->ui->mainTemplate()->setOnScreenMessage('failure', $this->pl->txt('msg_failure_own_usr_id'), true);
+			$this->ilCtrl->redirect($this, self::CMD_INDEX);
+		}
 		if ($usr_id == $ilUser->getId()) {
-			ilUtil::sendFailure($this->pl->txt('msg_failure_own_usr_id'), true);
+			$this->ui->mainTemplate()->setOnScreenMessage('failure', $this->pl->txt('msg_failure_own_usr_id'), true);
 			$this->ilCtrl->redirect($this, self::CMD_INDEX);
 		}
 		ilSession::set(self::SESSION_ID, $usr_id);

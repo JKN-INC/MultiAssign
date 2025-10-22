@@ -3,7 +3,7 @@
 require_once('./Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/MultiAssign/classes/Config/class.multaConfig.php');
 require_once('./Modules/Course/classes/class.ilObjCourse.php');
 require_once('./Services/Mail/classes/class.ilMail.php');
-use srag\DIC\MultiAssign\DICTrait;
+
 /**
  * Class multaSummaryMail
  *
@@ -11,7 +11,6 @@ use srag\DIC\MultiAssign\DICTrait;
  * @version 1.0.0
  */
 class multaSummaryMail {
-    use DICTrait;
 	const P_USER_FIRSTNAME = 'USER_FIRSTNAME';
 	const P_USER_LASTNAME = 'USER_LASTNAME';
 	const P_USER_EMAIL = 'USER_EMAIL';
@@ -165,11 +164,8 @@ class multaSummaryMail {
 		$this->renderEmailText();
 
 		$ilMail = new ilMail($ilUser->getId());
-        if (self::version()->is6()) {
-            $ilMail->sendMail($ilObjUser->getLogin(), '', '', $this->subject, $this->getMailText(), [], false);
-        } else {
-		$ilMail->sendMail($ilObjUser->getLogin(), '', '', $this->subject, $this->getMailText(), NULL, array( 'normal' ));
-		}
+		
+		$ilMail->sendMail($ilObjUser->getLogin(), '', '', $this->subject, $this->getMailText(), [], false);
 	}
 
 
@@ -272,5 +268,19 @@ class multaSummaryMail {
 	 */
 	public function setSubject($subject) {
 		$this->subject = $subject;
+	}
+
+	/**
+	 * Returns a version helper object with is6() method.
+	 * This is a minimal stub for compatibility.
+	 */
+	public static function version()
+	{
+		return new class {
+			public function is6() {
+				// Adjust this logic as needed for your environment
+				return false;
+			}
+		};
 	}
 }

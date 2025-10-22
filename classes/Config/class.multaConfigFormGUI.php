@@ -19,7 +19,7 @@ class multaConfigFormGUI extends ilPropertyFormGUI {
 	/**
 	 * @var ilCtrl
 	 */
-	protected $ctrl;
+	protected ilCtrl $ctrl;
 
 
 	/**
@@ -61,12 +61,12 @@ class multaConfigFormGUI extends ilPropertyFormGUI {
 
 		$cb = new ilCheckboxInputGUI($this->txt(multaConfig::F_SEND_MAILS), multaConfig::F_SEND_MAILS);
 
-		$te = new ilTextareaInputGUI($this->txt(multaConfig::F_EMAIL_TEXT_DE), multaConfig::F_EMAIL_TEXT_DE);
+		$te = new ilTextAreaInputGUI($this->txt(multaConfig::F_EMAIL_TEXT_DE), multaConfig::F_EMAIL_TEXT_DE);
 		$te->setRows(15);
 		$te->setInfo(multaSummaryMail::getAvailablePlaceholdersAsString());
 		$cb->addSubItem($te);
 
-		$te = new ilTextareaInputGUI($this->txt(multaConfig::F_EMAIL_TEXT_EN), multaConfig::F_EMAIL_TEXT_EN);
+		$te = new ilTextAreaInputGUI($this->txt(multaConfig::F_EMAIL_TEXT_EN), multaConfig::F_EMAIL_TEXT_EN);
 		$te->setRows(15);
 		$te->setInfo(multaSummaryMail::getAvailablePlaceholdersAsString());
 		$cb->addSubItem($te);
@@ -112,6 +112,7 @@ class multaConfigFormGUI extends ilPropertyFormGUI {
 		if (!$this->checkInput()) {
 			return false;
 		}
+
 		foreach ($this->getItems() as $item) {
 			$this->saveValueForItem($item);
 		}
@@ -124,7 +125,9 @@ class multaConfigFormGUI extends ilPropertyFormGUI {
 	 * @param ilFormPropertyGUI $item
 	 */
 	private function saveValueForItem(ilFormPropertyGUI $item) {
+		
 		if (self::checkItem($item)) {
+
 			$key = $item->getPostVar();
 			multaConfig::set($key, $this->getInput($key));
 

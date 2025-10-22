@@ -21,7 +21,7 @@ class multaConfig extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	public function getConnectorContainerName() {
+	public function getConnectorContainerName(): string {
 		return self::TABLE_NAME;
 	}
 
@@ -30,7 +30,7 @@ class multaConfig extends ActiveRecord {
 	 * @return string
 	 * @deprecated
 	 */
-	public static function returnDbTableName() {
+	public static function returnDbTableName(): string {
 		return self::TABLE_NAME;
 	}
 
@@ -58,24 +58,10 @@ class multaConfig extends ActiveRecord {
 	 * @param string $value
 	 */
 	public static function set($id, $value) {
-		/**
-		 * @var multaConfig $obj
-		 */
-		$obj = self::find($id);
-		if (is_array($value)) {
-			$encoded_value = json_encode($value);
-		} else {
-			$encoded_value = $value;
-		}
-		if ($obj instanceof multaConfig) {
-			$obj->setValue($encoded_value);
-			$obj->update();
-		} else {
-			$obj = new self();
-			$obj->setId($id);
-			$obj->setValue($encoded_value);
-			$obj->create();
-		}
+		$obj = self::findOrGetInstance($id);
+		$encoded_value = is_array($value) ? json_encode($value) : $value;
+		$obj->setValue($encoded_value);
+		$obj->store();
 	}
 
 

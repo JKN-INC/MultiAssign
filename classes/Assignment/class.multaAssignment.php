@@ -19,7 +19,7 @@ class multaAssignment extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	public function getConnectorContainerName() {
+	public function getConnectorContainerName():string {
 		return self::TABLE_NAME;
 	}
 
@@ -28,7 +28,7 @@ class multaAssignment extends ActiveRecord {
 	 * @return string
 	 * @deprecated
 	 */
-	public static function returnDbTableName() {
+	public static function returnDbTableName():string {
 		return self::TABLE_NAME;
 	}
 
@@ -274,7 +274,7 @@ class multaAssignment extends ActiveRecord {
 	}
 
 
-	public function create() {
+	public function create(): void {
 		$this->setCreateDate(new DateTime());
 		parent::create();
 	}

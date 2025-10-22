@@ -9,6 +9,7 @@ require_once('./Customizing/global/plugins/Services/UIComponent/UserInterfaceHoo
  * @author  Fabian Schmid <fs@studer-raimann.ch>
  * @version 1.0.0
  *
+ * @ilCtrl_IsCalledBy ilMultiAssignConfigGUI: ilObjComponentSettingsGUI
  */
 class ilMultiAssignConfigGUI extends ilPluginConfigGUI {
 
@@ -33,7 +34,7 @@ class ilMultiAssignConfigGUI extends ilPluginConfigGUI {
 	}
 
 
-	public function performCommand($cmd) {
+	public function performCommand(string $cmd): void {
 		if ($cmd == self::CMD_CONFIGURE) {
 			$cmd = self::CMD_DEFAULT;
 		}
@@ -58,7 +59,9 @@ class ilMultiAssignConfigGUI extends ilPluginConfigGUI {
 		$form = new multaConfigFormGUI($this);
 		$form->setValuesByPost();
 		if ($form->saveObject()) {
-			ilUtil::sendSuccess($this->plugin_object->txt('admin_saved'), true);
+			global $DIC;
+            $ui = $DIC->ui();
+            $ui->mainTemplate()->setOnScreenMessage('success',$this->plugin_object->txt('admin_saved'), true);
 			$this->ctrl->redirect($this, self::CMD_DEFAULT);
 		}
 		$this->tpl->setContent($form->getHTML());
