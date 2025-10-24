@@ -6,31 +6,8 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit6ba8bcf64d3b1bcad1fbb37ea4c50135
 {
-    public static $prefixLengthsPsr4 = array (
-        's' => 
-        array (
-            'srag\\Plugins\\MultiAssign\\' => 25,
-            'srag\\LibrariesNamespaceChanger\\' => 31,
-            'srag\\DIC\\' => 9,
-        ),
-    );
-
-    public static $prefixDirsPsr4 = array (
-        'srag\\Plugins\\MultiAssign\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
-        ),
-        'srag\\LibrariesNamespaceChanger\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src',
-        ),
-        'srag\\DIC\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/srag/dic/src',
-        ),
-    );
-
     public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'ilMultiAssignConfigGUI' => __DIR__ . '/../..' . '/classes/class.ilMultiAssignConfigGUI.php',
         'ilMultiAssignPlugin' => __DIR__ . '/../..' . '/classes/class.ilMultiAssignPlugin.php',
         'ilMultiAssignUIHookGUI' => __DIR__ . '/../..' . '/classes/class.ilMultiAssignUIHookGUI.php',
@@ -48,46 +25,11 @@ class ComposerStaticInit6ba8bcf64d3b1bcad1fbb37ea4c50135
         'multaUser' => __DIR__ . '/../..' . '/classes/User/class.multaUser.php',
         'multaUserGUI' => __DIR__ . '/../..' . '/classes/User/class.multaUserGUI.php',
         'multaUserTableGUI' => __DIR__ . '/../..' . '/classes/User/class.multaUserTableGUI.php',
-        'srag\\DIC\\MultiAssign\\DICStatic' => __DIR__ . '/..' . '/srag/dic/src/DICStatic.php',
-        'srag\\DIC\\MultiAssign\\DICStaticInterface' => __DIR__ . '/..' . '/srag/dic/src/DICStaticInterface.php',
-        'srag\\DIC\\MultiAssign\\DICTrait' => __DIR__ . '/..' . '/srag/dic/src/DICTrait.php',
-        'srag\\DIC\\MultiAssign\\DIC\\AbstractDIC' => __DIR__ . '/..' . '/srag/dic/src/DIC/AbstractDIC.php',
-        'srag\\DIC\\MultiAssign\\DIC\\DICInterface' => __DIR__ . '/..' . '/srag/dic/src/DIC/DICInterface.php',
-        'srag\\DIC\\MultiAssign\\DIC\\Implementation\\ILIAS54DIC' => __DIR__ . '/..' . '/srag/dic/src/DIC/Implementation/ILIAS54DIC.php',
-        'srag\\DIC\\MultiAssign\\DIC\\Implementation\\ILIAS60DIC' => __DIR__ . '/..' . '/srag/dic/src/DIC/Implementation/ILIAS60DIC.php',
-        'srag\\DIC\\MultiAssign\\Database\\AbstractILIASDatabaseDetector' => __DIR__ . '/..' . '/srag/dic/src/Database/AbstractILIASDatabaseDetector.php',
-        'srag\\DIC\\MultiAssign\\Database\\DatabaseDetector' => __DIR__ . '/..' . '/srag/dic/src/Database/DatabaseDetector.php',
-        'srag\\DIC\\MultiAssign\\Database\\DatabaseInterface' => __DIR__ . '/..' . '/srag/dic/src/Database/DatabaseInterface.php',
-        'srag\\DIC\\MultiAssign\\Database\\PdoContextHelper' => __DIR__ . '/..' . '/srag/dic/src/Database/PdoContextHelper.php',
-        'srag\\DIC\\MultiAssign\\Database\\PdoStatementContextHelper' => __DIR__ . '/..' . '/srag/dic/src/Database/PdoStatementContextHelper.php',
-        'srag\\DIC\\MultiAssign\\DevTools\\DevToolsCtrl' => __DIR__ . '/..' . '/srag/dic/src/DevTools/class.DevToolsCtrl.php',
-        'srag\\DIC\\MultiAssign\\Exception\\DICException' => __DIR__ . '/..' . '/srag/dic/src/Exception/DICException.php',
-        'srag\\DIC\\MultiAssign\\Ilias7PreWarn' => __DIR__ . '/..' . '/srag/dic/src/Ilias7PreWarn.php',
-        'srag\\DIC\\MultiAssign\\Loader\\AbstractLoaderDetector' => __DIR__ . '/..' . '/srag/dic/src/Loader/AbstractLoaderDetector.php',
-        'srag\\DIC\\MultiAssign\\Output\\Output' => __DIR__ . '/..' . '/srag/dic/src/Output/Output.php',
-        'srag\\DIC\\MultiAssign\\Output\\OutputInterface' => __DIR__ . '/..' . '/srag/dic/src/Output/OutputInterface.php',
-        'srag\\DIC\\MultiAssign\\PHPVersionChecker' => __DIR__ . '/..' . '/srag/dic/src/PHPVersionChecker.php',
-        'srag\\DIC\\MultiAssign\\Plugin\\Plugin' => __DIR__ . '/..' . '/srag/dic/src/Plugin/Plugin.php',
-        'srag\\DIC\\MultiAssign\\Plugin\\PluginInterface' => __DIR__ . '/..' . '/srag/dic/src/Plugin/PluginInterface.php',
-        'srag\\DIC\\MultiAssign\\Plugin\\Pluginable' => __DIR__ . '/..' . '/srag/dic/src/Plugin/Pluginable.php',
-        'srag\\DIC\\MultiAssign\\Util\\LibraryLanguageInstaller' => __DIR__ . '/..' . '/srag/dic/src/Util/LibraryLanguageInstaller.php',
-        'srag\\DIC\\MultiAssign\\Version\\Version' => __DIR__ . '/..' . '/srag/dic/src/Version/Version.php',
-        'srag\\DIC\\MultiAssign\\Version\\VersionInterface' => __DIR__ . '/..' . '/srag/dic/src/Version/VersionInterface.php',
-        'srag\\LibrariesNamespaceChanger\\GeneratePluginPhpAndXml' => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src/GeneratePluginPhpAndXml.php',
-        'srag\\LibrariesNamespaceChanger\\GeneratePluginReadme' => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src/GeneratePluginReadme.php',
-        'srag\\LibrariesNamespaceChanger\\LibrariesNamespaceChanger' => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src/LibrariesNamespaceChanger.php',
-        'srag\\LibrariesNamespaceChanger\\PHP72Backport' => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src/PHP72Backport.php',
-        'srag\\LibrariesNamespaceChanger\\PHP7Backport' => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src/PHP7Backport.php',
-        'srag\\LibrariesNamespaceChanger\\RemovePHP72Backport' => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src/RemovePHP72Backport.php',
-        'srag\\LibrariesNamespaceChanger\\UpdatePluginReadme' => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src/UpdatePluginReadme.php',
-        'srag\\Plugins\\MultiAssign\\Menu\\Menu' => __DIR__ . '/../..' . '/src/Menu/Menu.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit6ba8bcf64d3b1bcad1fbb37ea4c50135::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit6ba8bcf64d3b1bcad1fbb37ea4c50135::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit6ba8bcf64d3b1bcad1fbb37ea4c50135::$classMap;
 
         }, null, ClassLoader::class);
