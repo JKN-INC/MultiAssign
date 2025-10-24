@@ -5,6 +5,8 @@ require_once('./Services/UIComponent/classes/class.ilUserInterfaceHookPlugin.php
 require_once __DIR__ . "/Assignment/class.multaAssignment.php";
 require_once __DIR__ . "/Config/class.multaConfig.php";
 
+use ILIAS\GlobalScreen\Provider\ProviderCollection;
+use srag\Plugins\MultiAssign\Menu\Menu;
 use ILIAS\GlobalScreen\Scope\MainMenu\Provider\AbstractStaticPluginMainMenuProvider;
 
 /**
@@ -27,6 +29,8 @@ class ilMultiAssignPlugin extends ilUserInterfaceHookPlugin {
 
 	protected $DIC;
 
+    protected ProviderCollection $provider_collection;
+
 
 	/**
 	 * @return ilMultiAssignPlugin
@@ -46,7 +50,7 @@ class ilMultiAssignPlugin extends ilUserInterfaceHookPlugin {
 	protected ilDBInterface $db;
 
 
-public function __construct()
+	public function __construct()
 	{
 	
 		global $DIC;
@@ -57,9 +61,31 @@ public function __construct()
 		$this->component_repository = $DIC["component.repository"];
 
 		parent::__construct($this->db, $this->component_repository, ilMultiAssignPlugin::PLUGIN_ID);
-
+		
+        $this->addPluginProviders();
 
 	}
+
+	private function addPluginProviders(): void
+    {
+        global $DIC;
+
+        if (!isset($DIC["global_screen"])) {
+            return;
+        }
+
+        $this->provider_collection->setMainBarProvider(new Menu($DIC, $this));
+    }
+
+	/**
+     * @inheritDoc
+     */
+    public function promoteGlobalScreenProvider(): AbstractStaticPluginMainMenuProvider
+    {
+        global $DIC;
+
+        return new Menu($DIC, $this);
+    }
 
 	/**
 	 * @return string
